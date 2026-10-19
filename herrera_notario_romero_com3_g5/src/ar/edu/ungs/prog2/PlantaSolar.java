@@ -58,30 +58,7 @@ public class PlantaSolar extends PlantasRenovables {
     public String toString() {
         return "PlantaSolar [Nombre=" + nombre + ", Paneles=" + cantidadDePaneles + ", Superficie=" + superficieCubierta + "m²]";
     }
-// getter y stters
-    public double getSuperficieCubierta() {
-        return superficieCubierta;
-    }
 
-    public void setSuperficieCubierta(double superficieCubierta) {
-        this.superficieCubierta = superficieCubierta;
-    }
-
-    public int getCantidadDePaneles() {
-        return cantidadDePaneles;
-    }
-
-    public void setCantidadDePaneles(int cantidadDePaneles) {
-        this.cantidadDePaneles = cantidadDePaneles;
-    }
-
-    public double getHorasDeRadiacionDiaria() {
-        return horasDeRadiacionDiaria;
-    }
-
-    public void setHorasDeRadiacionDiaria(double horasDeRadiacionDiaria) {
-        this.horasDeRadiacionDiaria = horasDeRadiacionDiaria;
-    }
 }
 
 

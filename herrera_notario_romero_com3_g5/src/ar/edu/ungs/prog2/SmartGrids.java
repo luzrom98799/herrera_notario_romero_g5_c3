@@ -46,7 +46,6 @@ public class SmartGrids implements ISmartGrids {
 			listaConsultarPlantas.add(textoDeLaPlanta);
 	    
 		}
-		// TODO Auto-generated method stub
 		return listaConsultarPlantas;
 	}
 

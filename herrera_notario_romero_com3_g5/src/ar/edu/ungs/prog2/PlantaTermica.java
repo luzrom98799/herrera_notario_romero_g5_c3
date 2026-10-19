@@ -55,22 +55,5 @@ public class PlantaTermica extends Planta {
 		// TODO Auto-generated method stub
 		return null;
 	}
-    public String getTipoCombustible() {
-        return tipoCombustible;
-    }
 
-    public void setTipoCombustible(String tipoCombustible) {
-        this.tipoCombustible = tipoCombustible;
-    }
-
-    public int getCantidadDeEmisionesDeCO2() {
-        return cantidadDeEmisionesDeCO2;
-    }
-
-    public void setCantidadDeEmisionesDeCO2(int cantidadDeEmisionesDeCO2) {
-        this.cantidadDeEmisionesDeCO2 = cantidadDeEmisionesDeCO2;
-    }
-
-
-	
 }
