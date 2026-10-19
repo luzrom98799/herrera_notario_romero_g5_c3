@@ -2,14 +2,14 @@ package ar.edu.ungs.prog2;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.time.LocalDateTime;
 public abstract class Planta {
     protected double capacidadMax;
     protected String direccion;
     protected String nombre;
     protected List<Monitoreo> registro;
     protected boolean activaEstado;
-    protected Fecha fechaHoraPuestEnFuncionamiento; // Nota: Si es FechaHora, considera ajustar el tipo
+    protected LocalDateTime fechaHoraPuestEnFuncionamiento; // Nota: Si es FechaHora, considera ajustar el tipo
     protected List<PeriodoInactividad> periodosInactivos;
 
     public Planta(double capacidadMax, String direccion, String nombre, boolean activaEstado) {
@@ -26,7 +26,7 @@ public abstract class Planta {
     protected abstract double capacidadMinimaCuota();
     protected abstract int totalGenerado();
     protected abstract void registrarMonitoreo();
-    protected abstract boolean estuvoInactivaEn(Fecha fechaHoaPuestaEnFuncionamiento);
+    protected abstract boolean estuvoInactivaEn(LocalDateTime fechaHoaPuestaEnFuncionamiento);
     protected abstract int limpiarRegistrosSinDatos();
 
     @Override

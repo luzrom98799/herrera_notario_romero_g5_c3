@@ -1,5 +1,5 @@
 package ar.edu.ungs.prog2;
-
+import java.time.LocalDateTime;
 public class PlantaSolar extends PlantasRenovables {
     private double superficieCubierta;
     private int cantidadDePaneles;
@@ -45,7 +45,7 @@ public class PlantaSolar extends PlantasRenovables {
     }
 
     @Override
-    protected boolean estuvoInactivaEn(Fecha fechaHora) {
+    protected boolean estuvoInactivaEn(LocalDateTime fechaHoraPuestaEnFuncionamiento) {
         return false;
     }
 

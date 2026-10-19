@@ -1,5 +1,5 @@
 package ar.edu.ungs.prog2;
-
+import java.time.LocalDateTime;
 public class PlantaEolica extends PlantasRenovables {
     
     private int cantidadDeAerogeneradores;
@@ -49,7 +49,7 @@ public class PlantaEolica extends PlantasRenovables {
 		
 	}
 	@Override
-	protected boolean estuvoInactivaEn(Fecha fechaHoaPuestaEnFuncionamiento) {
+	protected boolean estuvoInactivaEn(LocalDateTime fechaHoraPuestaEnFuncionamiento) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -63,11 +63,9 @@ public class PlantaEolica extends PlantasRenovables {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	@Override
-	protected boolean estuvoInactivaEn(Fecha fechaHoaPuestaEnFuncionamiento) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+
+
+
     
 
 }

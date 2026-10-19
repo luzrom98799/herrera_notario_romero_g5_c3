@@ -1,20 +1,20 @@
 package ar.edu.ungs.prog2;
-
+import java.time.LocalDateTime;
 public class PeriodoInactividad {
-    private Fecha fechaInicio;
-    private Fecha fechaFin;
+    private LocalDateTime fechaInicio;
+    private LocalDateTime fechaFin;
 
-    public PeriodoInactividad(Fecha fechaInicio, Fecha fechaFin) {
+    public PeriodoInactividad(LocalDateTime fechaInicio, LocalDateTime fechaFin) {
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
     }
 
 
-    public Fecha consultarFechaInicio() {
+    public LocalDateTime consultarFechaInicio() {
         return fechaInicio;
     }
 
-    public Fecha consultarFechaFin() {
+    public LocalDateTime consultarFechaFin() {
         return fechaFin;
     }
 

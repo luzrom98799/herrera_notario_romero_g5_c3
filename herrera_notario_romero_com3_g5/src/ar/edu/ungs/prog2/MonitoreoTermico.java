@@ -1,10 +1,10 @@
 package ar.edu.ungs.prog2;
-
+import java.time.LocalDateTime;
 public class MonitoreoTermico extends Monitoreo {
     private double cantidadDeCO2Generado;
     private double cantDeCombustible;
 
-    public MonitoreoTermico(Fecha fechaHora, int totalEnergiaGenHora, int cantIncidentesPorPeriodo, 
+    public MonitoreoTermico(LocalDateTime fechaHora, int totalEnergiaGenHora, int cantIncidentesPorPeriodo, 
                             double cantidadDeCO2Generado, double cantDeCombustible) {
         super(fechaHora, totalEnergiaGenHora, cantIncidentesPorPeriodo);
         this.cantidadDeCO2Generado = cantidadDeCO2Generado;

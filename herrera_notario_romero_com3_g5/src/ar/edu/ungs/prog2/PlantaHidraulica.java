@@ -1,5 +1,5 @@
 package ar.edu.ungs.prog2;
-
+import java.time.LocalDateTime;
 public class PlantaHidraulica extends PlantasRenovables {
     private int cantidadTurbinas;
     private double capacidadEmbalse;
@@ -52,7 +52,7 @@ public class PlantaHidraulica extends PlantasRenovables {
 	}
 
 	@Override
-	protected boolean estuvoInactivaEn(Fecha fechaHoaPuestaEnFuncionamiento) {
+	protected boolean estuvoInactivaEn(LocalDateTime fechaHoaPuestaEnFuncionamiento) {
 		// TODO Auto-generated method stub
 		return false;
 	}

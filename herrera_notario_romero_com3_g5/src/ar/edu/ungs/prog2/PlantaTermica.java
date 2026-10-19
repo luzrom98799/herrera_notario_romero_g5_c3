@@ -1,5 +1,5 @@
 package ar.edu.ungs.prog2;
-
+import java.time.LocalDateTime;
 public class PlantaTermica extends Planta {
 	private String tipoCombustible;
 	private int cantidadDeEmisionesDeCO2;
@@ -41,7 +41,7 @@ public class PlantaTermica extends Planta {
 		
 	}
 	@Override
-	protected boolean estuvoInactivaEn(Fecha fechaHoaPuestaEnFuncionamiento) {
+	protected boolean estuvoInactivaEn(LocalDateTime fechaHoraPuestaEnFuncionamiento) {
 		// TODO Auto-generated method stub
 		return false;
 	}

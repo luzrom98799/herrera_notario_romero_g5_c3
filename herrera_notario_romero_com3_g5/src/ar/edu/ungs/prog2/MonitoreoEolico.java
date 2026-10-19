@@ -1,11 +1,11 @@
 package ar.edu.ungs.prog2;
-
+import java.time.LocalDateTime;
 public class MonitoreoEolico extends Monitoreo {
  
     private double velocidadDelVientoPromedio;
 
 
-    public MonitoreoEolico(Fecha fechaHora, int totalEnergiaGenHora, int cantIncidentesPorPeriodo, 
+    public MonitoreoEolico(LocalDateTime fechaHora, int totalEnergiaGenHora, int cantIncidentesPorPeriodo, 
                            double velocidadDelVientoPromedio) {
         super(fechaHora, totalEnergiaGenHora, cantIncidentesPorPeriodo);
         this.velocidadDelVientoPromedio = velocidadDelVientoPromedio;

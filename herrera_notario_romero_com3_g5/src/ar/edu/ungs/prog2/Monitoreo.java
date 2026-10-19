@@ -1,18 +1,18 @@
 package ar.edu.ungs.prog2;
-
+import java.time.LocalDateTime;
 public class Monitoreo {
-    protected Fecha fechaHora;
+    protected LocalDateTime fechaHora;
     protected int totalEnergiaGenHora;
     protected int cantIncidentesPorPeriodo;
     
 
-    public Monitoreo(Fecha fechaHora, int totalEnergiaGenHora, int cantIncidentesPorPeriodo) {
+    public Monitoreo(LocalDateTime fechaHora, int totalEnergiaGenHora, int cantIncidentesPorPeriodo) {
         this.fechaHora = fechaHora;
         this.totalEnergiaGenHora = totalEnergiaGenHora;
         this.cantIncidentesPorPeriodo = cantIncidentesPorPeriodo;
     }
     
-    public Fecha consultarFechaHora() {
+    public LocalDateTime consultarFechaHora() {
         return null; 
     }
     
