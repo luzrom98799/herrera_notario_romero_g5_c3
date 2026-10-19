@@ -22,6 +22,7 @@ public abstract class Planta {
     }
     
     String DataDePlantas() {
+    	//este es el metodo creado para llamar en consultar planta en smartgrids
         String estadoDePlaantaString = this.activaEstado ? "ACTIVA" : "INACTIVA";
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
         String fechaExacta = this.fechaHoraPuestaEnFuncionamiento.format(formato);

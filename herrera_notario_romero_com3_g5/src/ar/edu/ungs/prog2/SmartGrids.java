@@ -40,10 +40,11 @@ public class SmartGrids implements ISmartGrids {
 
 	@Override
 	public List<String> consultarPlantas() {
+		//este metodo ya esta hecho, cree en planta un metodo DataDePlantas el cual llamo
 		List<String> listaConsultarPlantas = new ArrayList<>();
 		for (Planta p : this.plantas.values()) {
-			String textoDeLaPlanta = p.DataDePlantas();
-			listaConsultarPlantas.add(textoDeLaPlanta);
+			String textoDeLaPlanta = p.DataDePlantas();//aca llame a el metodo DataDePlantas que hize en clase Planta
+			listaConsultarPlantas.add(textoDeLaPlanta); 
 	    
 		}
 		return listaConsultarPlantas;
