@@ -1,9 +1,10 @@
 package ar.edu.ungs.prog2;
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class SmartGrids implements ISmartGrids {
+	private Map<String, Planta> plantas;
 
 	@Override
 	public void registrarPlantaSolar(String nombre, String direccion, double capacidadMaxima,
@@ -39,8 +40,14 @@ public class SmartGrids implements ISmartGrids {
 
 	@Override
 	public List<String> consultarPlantas() {
+		List<String> listaConsultarPlantas = new ArrayList<>();
+		for (Planta p : this.plantas.values()) {
+			String textoDeLaPlanta = p.DataDePlantas();
+			listaConsultarPlantas.add(textoDeLaPlanta);
+	    
+		}
 		// TODO Auto-generated method stub
-		return null;
+		return listaConsultarPlantas;
 	}
 
 	@Override
