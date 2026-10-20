@@ -1,71 +1,51 @@
 package ar.edu.ungs.prog2;
+
 import java.time.LocalDateTime;
+
 public class PlantaEolica extends PlantasRenovables {
-    
+
     private int cantidadDeAerogeneradores;
-    private int alturaDeLasTorres;
-    private int velocidadMinDeVientoNecesaria;
-    public PlantaEolica(double capacidadMax, String direccion, String nombre, boolean activaEstado, 
-            String fuentePrimaria, double eficienciaPromedio, 
-            int cantidadDeAerogeneradores, int alturaDeLasTorres, 
-            int velocidadMinDeVientoNecesaria) {
+    private double alturaDeLasTorres;
+    private double velocidadMinDeVientoNecesaria;
 
-          super(capacidadMax, direccion, nombre, activaEstado, fuentePrimaria, eficienciaPromedio);
+    public PlantaEolica(double capacidadMax, String direccion,
+            String nombre, boolean activaEstado,
+            LocalDateTime fechaHoraPuestaEnFuncionamiento,
+            String fuentePrimaria, double eficienciaPromedio,
+            int cantidadDeAerogeneradores,
+            double alturaDeLasTorres,
+            double velocidadMinDeVientoNecesaria) {
 
-            this.cantidadDeAerogeneradores = cantidadDeAerogeneradores;
-            this.alturaDeLasTorres = alturaDeLasTorres;
-            this.velocidadMinDeVientoNecesaria = velocidadMinDeVientoNecesaria;
-            
-            
-}
-    //aca utilizaremos sobrecarga. es un metodo especifico de plantaeolica
-    public boolean cumpleCuota(int capacidadMaxima, int eficienciaPromedio) {
-        //  lógica de cumplecuota
-        return false;
+        super(capacidadMax, direccion, nombre, activaEstado,
+                fechaHoraPuestaEnFuncionamiento,
+                fuentePrimaria, eficienciaPromedio);
+
+        this.cantidadDeAerogeneradores = cantidadDeAerogeneradores;
+        this.alturaDeLasTorres = alturaDeLasTorres;
+        this.velocidadMinDeVientoNecesaria =
+                velocidadMinDeVientoNecesaria;
     }
-	@Override
-	protected void actualizarEstado() {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	protected boolean cumpleCuota() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	@Override
-	protected double capacidadMinimaCuota() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	@Override
-	protected int totalGenerado() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	@Override
-	protected void registrarMonitoreo() {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	protected boolean estuvoInactivaEn(LocalDateTime fechaHoraPuestaEnFuncionamiento) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	@Override
-	protected int limpiarRegistrosSinDatos() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
+    @Override
+    public double capacidadMinimaCuota() {
+        return calcularCuotaRenovable();
+    }
 
+    @Override
+    public boolean cumpleCuota(Monitoreo monitoreo) { //verifica que el monitoreo sea eólico, corresponda a esta planta y que la energía generada alcance la cuota.
+        return monitoreo instanceof MonitoreoEolico
+                && monitoreo.correspondeA(this)
+                && monitoreo.consultarEnergiaGenerada()
+                        >= capacidadMinimaCuota();
+    }
 
-    
-
+    @Override
+    public String toString() {
+        return "Planta eólica: "
+                + DataDePlantas()
+                + ", aerogeneradores: " + cantidadDeAerogeneradores
+                + ", altura de torres: " + alturaDeLasTorres
+                + ", velocidad mínima de viento: "
+                + velocidadMinDeVientoNecesaria;
+    }
 }

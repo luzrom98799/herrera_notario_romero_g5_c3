@@ -1,10 +1,15 @@
 package ar.edu.ungs.prog2;
 import java.util.ArrayList;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.LinkedHashMap;
 
 public class SmartGrids implements ISmartGrids {
 	private Map<String, Planta> plantas;
+	public SmartGrids() {
+	    this.plantas = new LinkedHashMap<>();
+	}
 
 	@Override
 	public void registrarPlantaSolar(String nombre, String direccion, double capacidadMaxima,
@@ -58,20 +63,37 @@ public class SmartGrids implements ISmartGrids {
 
 	@Override
 	public void activarPlanta(String nombre, String fechaHora) {
-		// TODO Auto-generated method stub
+	    Planta planta = plantas.get(nombre);
 
+	    if (planta == null) {
+	        throw new RuntimeException("La planta no existe");
+	    }
+
+	    planta.actualizarEstado(true, LocalDateTime.parse(fechaHora));
 	}
+	
+	
 
 	@Override
 	public void desactivarPlanta(String nombre, String fechaHora) {
-		// TODO Auto-generated method stub
-
+	    Planta planta = plantas.get(nombre);
+	
+	    if (planta == null) {
+	        throw new RuntimeException("La planta no existe");
+	    }
+	
+	    planta.actualizarEstado(false, LocalDateTime.parse(fechaHora));
 	}
-
+	
 	@Override
 	public boolean estaActiva(String nombre) {
-		// TODO Auto-generated method stub
-		return false;
+	    Planta planta = plantas.get(nombre);
+	
+	    if (planta == null) {
+	        throw new RuntimeException("La planta no existe");
+	    }
+	
+	    return planta.estaActiva();
 	}
 
 	@Override
