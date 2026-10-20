@@ -39,6 +39,35 @@ public class PlantaEolica extends PlantasRenovables {
                         >= capacidadMinimaCuota();
     }
 
+	public String horasSinVelocidadMinima() {
+	
+	    boolean[] horasConVientoBajo = new boolean[24];
+	    boolean[] horasConVientoSuficiente = new boolean[24];
+	
+	    recorrerMonitoreosEolicos(horasConVientoBajo, horasConVientoSuficiente, velocidadMinDeVientoNecesaria );
+	
+	    StringBuilder resultado = new StringBuilder();
+	
+	    for (int hora = 0; hora < 24; hora++) {
+	
+	        if (horasConVientoBajo[hora] && !horasConVientoSuficiente[hora]) {
+	
+	            if (resultado.length() > 0) {
+	                resultado.append(", ");
+	            }
+	
+	            if (hora < 10) {
+	                resultado.append("0");
+	            }
+	
+	            resultado.append(hora);
+	        }
+	    }
+	
+	    return resultado.toString();
+	}
+
+
     @Override
     public String toString() {
         return "Planta eólica: "

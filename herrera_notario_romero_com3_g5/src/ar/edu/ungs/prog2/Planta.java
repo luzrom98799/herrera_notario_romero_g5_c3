@@ -152,6 +152,74 @@ public abstract class Planta {
 
         return total;
     }
+
+	public int[] incidenciasPorHora() {
+	
+	    int[] incidencias = new int[24];
+	
+	    for (Monitoreo monitoreo : registro) {
+	        int hora = monitoreo.consultarFechaHora().getHour();
+	
+	        incidencias[hora] += monitoreo.consultarIncidentes();
+	    }
+	
+	    return incidencias;
+	}
+	
+
+	public int[] histogramaCumplimiento(LocalDateTime desde,
+	        LocalDateTime hasta) {
+	
+	    int[] histograma = new int[24];
+	
+	    for (Monitoreo monitoreo : registro) {
+	
+	        LocalDateTime fecha = monitoreo.consultarFechaHora();
+	
+	        if (!fecha.isBefore(desde)
+	                && !fecha.isAfter(hasta)
+	                && cumpleCuota(monitoreo)) {
+	
+	            int hora = fecha.getHour();
+	            histograma[hora]++;
+	        }
+	    }
+	
+	    return histograma;
+	}
+
+
+	public boolean algunaVezCumplioCuota() {
+	
+	    for (Monitoreo monitoreo : registro) {
+	        if (cumpleCuota(monitoreo)) {
+	            return true;
+	        }
+	    }
+	
+	    return false;
+	}
+
+	protected void recorrerMonitoreosEolicos(boolean[] horasConVientoBajo, boolean[] horasConVientoSuficiente,
+	                                        double velocidadMinima) {
+	
+	    for (Monitoreo monitoreo : registro) {
+	
+	        if (monitoreo instanceof MonitoreoEolico) {
+	
+	            MonitoreoEolico eolico = (MonitoreoEolico) monitoreo;
+	            int hora = eolico.consultarFechaHora().getHour();
+	
+	            if (eolico.consultarVelocidadDelVientoPromedio() < velocidadMinima) {
+	                horasConVientoBajo[hora] = true;
+	            } else {
+	                horasConVientoSuficiente[hora] = true;
+	            }
+	        }
+	    }
+	}
+
+
     
     public boolean estaActiva() {
     	return activaEstado; 
