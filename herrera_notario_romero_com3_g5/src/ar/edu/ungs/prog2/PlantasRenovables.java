@@ -19,6 +19,7 @@ public abstract class PlantasRenovables extends Planta {
     }
     //no volver a agregar actualizarEstado(), cumpleCuota() ni capacidadMinimaCuota() porque los hereda de Planta.
 
+
     // Cálculo compartido por las plantas renovables
     protected double calcularCuotaRenovable() {
         return capacidadMaximaParaCalculo() * eficienciaPromedio;

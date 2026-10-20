@@ -31,7 +31,7 @@ public class PlantaTermica extends Planta {
 		return 0;
 	}
 	@Override
-	protected int totalGenerado() {
+	public double totalGenerado() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -46,7 +46,7 @@ public class PlantaTermica extends Planta {
 		return false;
 	}
 	@Override
-	protected int limpiarRegistrosSinDatos() {
+	public int limpiarRegistrosSinDatos() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
