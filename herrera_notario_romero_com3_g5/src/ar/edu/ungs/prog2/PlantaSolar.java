@@ -5,12 +5,11 @@ public class PlantaSolar extends PlantasRenovables {
     private int cantidadDePaneles;
     private double horasDeRadiacionDiaria;
     
-    public PlantaSolar(double capacidadMax, String direccion, String nombre, boolean activaEstado, 
-                       String fuentePrimaria, double eficienciaPromedio, double superficieCubierta, 
-                       int cantidadDePaneles, double horasDeRadiacionDiaria) {
-        
+    public PlantaSolar(double capacidadMax, String direccion, String nombre, boolean activaEstado,
+            LocalDateTime fechaHoraPuestaEnFuncionamiento, String fuentePrimaria, double eficienciaPromedio,
+            double superficieCubierta, int cantidadDePaneles, double horasDeRadiacionDiaria) {
 
-        super(capacidadMax, direccion, nombre, activaEstado, fuentePrimaria, eficienciaPromedio);
+        super(capacidadMax, direccion, nombre, activaEstado, fechaHoraPuestaEnFuncionamiento, fuentePrimaria, eficienciaPromedio);
         
 
         this.superficieCubierta = superficieCubierta;
@@ -20,45 +19,25 @@ public class PlantaSolar extends PlantasRenovables {
 
 
     @Override
-    protected boolean cumpleCuota() {
-        return false;
+    public double capacidadMinimaCuota() {
+        return calcularCuotaRenovable()
+                * horasDeRadiacionDiaria / 24.0;
     }
 
     @Override
-    protected void actualizarEstado() {
-        // TODO Auto-generated method stub
+    public boolean cumpleCuota(Monitoreo monitoreo) {
+        return monitoreo != null
+                && monitoreo.correspondeA(this)
+                && monitoreo.consultarEnergiaGenerada()
+                        >= capacidadMinimaCuota();
     }
 
-    @Override
-    protected double capacidadMinimaCuota() {
-        // TODO Auto-generated method stub
-        return 0.0;
-    }
-
-    @Override
-    protected int totalGenerado() {
-        return 0;
-    }
-
-    @Override
-    protected void registrarMonitoreo() {
-    }
-
-    @Override
-    protected boolean estuvoInactivaEn(LocalDateTime fechaHoraPuestaEnFuncionamiento) {
-        return false;
-    }
-
-    @Override
-    protected int limpiarRegistrosSinDatos() {
-        return 0;
-    }
 
     @Override
     public String toString() {
-        return "PlantaSolar [Nombre=" + nombre + ", Paneles=" + cantidadDePaneles + ", Superficie=" + superficieCubierta + "m²]";
+        return "Planta solar: " + DataDePlantas() + ", paneles: " + cantidadDePaneles + ", superficie: " + superficieCubierta + " m²"
+                + ", horas de radiación diaria: " + horasDeRadiacionDiaria;
     }
-
 }
 
 

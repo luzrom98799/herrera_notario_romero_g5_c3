@@ -30,6 +30,10 @@ public abstract class PlantasRenovables extends Planta {
                 && fuentePrimaria.equalsIgnoreCase(fuente);
     }
 
+	public String consultarFuentePrimaria() {
+	    return fuentePrimaria;
+	}
+
     @Override
     public abstract String toString();
 }

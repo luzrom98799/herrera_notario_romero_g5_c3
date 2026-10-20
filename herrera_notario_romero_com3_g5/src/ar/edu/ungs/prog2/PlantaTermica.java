@@ -1,59 +1,48 @@
 package ar.edu.ungs.prog2;
+
 import java.time.LocalDateTime;
+
 public class PlantaTermica extends Planta {
-	private String tipoCombustible;
-	private int cantidadDeEmisionesDeCO2;
-    public PlantaTermica(double capacidadMax, String direccion, String nombre, boolean activaEstado, 
-            String tipoCombustible, int cantidadDeEmisionesDeCO2) {
 
-    	super(capacidadMax, direccion, nombre, activaEstado);
+    private String tipoCombustible;
+    private double objetivoEmisionesCo2PorHora;
+    private double capacidadAlmacenamientoCombustible;
 
+    public PlantaTermica(double capacidadMax, String direccion, String nombre, boolean activaEstado, LocalDateTime fechaHoraPuestaEnFuncionamiento,
+            String tipoCombustible, double objetivoEmisionesCo2PorHora, double capacidadAlmacenamientoCombustible) {
 
-         this.tipoCombustible = tipoCombustible;
-         this.cantidadDeEmisionesDeCO2 = cantidadDeEmisionesDeCO2;
-}
-    public boolean cumpleCuota(int capacidadMaxima, int cantidadDeEmisionesDeCo2) {
+        super(capacidadMax, direccion, nombre, activaEstado, fechaHoraPuestaEnFuncionamiento);
 
-        return false;
+        this.tipoCombustible = tipoCombustible;
+        this.objetivoEmisionesCo2PorHora = objetivoEmisionesCo2PorHora;
+        this.capacidadAlmacenamientoCombustible = capacidadAlmacenamientoCombustible;
     }
+
     @Override
-    protected void actualizarEstado() {
-        // TODO Auto-generated method stub
+    public double capacidadMinimaCuota() {
+        return capacidadMaximaParaCalculo() / 2.0;
     }
-	@Override
-	protected boolean cumpleCuota() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	@Override
-	protected double capacidadMinimaCuota() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	@Override
-	protected int totalGenerado() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	@Override
-	protected void registrarMonitoreo() {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	protected boolean estuvoInactivaEn(LocalDateTime fechaHoraPuestaEnFuncionamiento) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	@Override
-	protected int limpiarRegistrosSinDatos() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
+    @Override
+    public boolean cumpleCuota(Monitoreo monitoreo) {
+        if (!(monitoreo instanceof MonitoreoTermico)
+                || !monitoreo.correspondeA(this)) {
+            return false;
+        }
+
+        MonitoreoTermico termico = (MonitoreoTermico) monitoreo;
+
+        return termico.consultarEnergiaGenerada() >= capacidadMinimaCuota()
+        		&& termico.consultarCO2Generado() < objetivoEmisionesCo2PorHora;
+    }
+
+    @Override
+    public String toString() {
+        return "Planta térmica: " + DataDePlantas()
+                + ", combustible: " + tipoCombustible
+                + ", objetivo de emisiones CO2: "
+                + objetivoEmisionesCo2PorHora
+                + ", capacidad de almacenamiento: "
+                + capacidadAlmacenamientoCombustible;
+    }
 }
